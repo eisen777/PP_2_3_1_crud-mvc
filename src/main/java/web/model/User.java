@@ -1,6 +1,8 @@
 package web.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -10,9 +12,13 @@ public class User {
     private int id;
 
     @Column(name = "name")
+    @NotNull
+    @Size(min=2, max=30)
     private String name;
 
     @Column(name = "surname")
+    @NotNull
+    @Size(min=2, max=30)
     private String surname;
 
     public User(int id, String name, String surname) {

@@ -5,16 +5,19 @@
     <title>New person</title>
 </head>
 <body>
-
+<h1>Creating</h1>
 <form th:method="POST" th:action="@{/}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-    <br/>
-    <label for="age">Enter surname: </label>
-    <input type="text" th:field="*{surname}" id="age"/>
-    <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Age Error</div>
-    <br/>
+    <input type="hidden" th:field="*{id}" th:value="*{getId()}">
+    <div>
+        <label for="name">User's name</label>
+        <input type="text" id="name" th:field="*{name}" th:value="${user.getSurname()}" placeholder="Enter user's name">
+    </div>
+    <br>
+    <div>
+        <label for="surname">User's surname</label>
+        <input type="text" id="surname" th:field="*{surname}" th:value="${user.getSurname()}" placeholder="Enter user's surname">
+    </div>
+    <br>
     <input type="submit" value="Create!"/>
 </form>
 

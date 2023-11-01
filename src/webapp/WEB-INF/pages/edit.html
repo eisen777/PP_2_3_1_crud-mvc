@@ -7,14 +7,19 @@
 <body>
 <h1>Editing</h1>
 <form th:method="POST" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
-    <label for="name">Enter new name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-    <br/>
-    <label for="surname">Enter new surname: </label>
-    <input type="text" th:field="*{surname}" id="surname"/>
-    <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname Error</div>
-    <br/>
+    <input type="hidden" th:field="*{id}" th:value="*{getId()}">
+    <div>
+        <label for="name">New user's name</label>
+        <input type="text" id="name" th:field="*{name}" th:value="${user.getSurname()}" placeholder="Enter new user's name" required>
+        <div style="display: inline-block; text-align: right;" th:if="${#fields.hasErrors('name')}">name error</div>
+    </div>
+    <br>
+    <div>
+        <label for="surname">New user's surname</label>
+        <input type="text" id="surname" th:field="*{surname}" th:value="${user.getSurname()}" placeholder="Enter new user's surname" required>
+        <div style="display: inline-block; text-align: right;" th:if="${#fields.hasErrors('surname')}">surname error</div>
+    </div>
+    <br>
     <input type="submit" value="Update!"/>
 </form>
 </body>
